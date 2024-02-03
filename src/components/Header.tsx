@@ -5,7 +5,6 @@ import "./Header.css";
 
 export function Header() {
   const { user, isAuthenticated, loginWithRedirect } = useAuth0();
-  console.log("🚀 ~ Header ~ user:", user);
 
   if (!isAuthenticated) {
     return (
@@ -16,7 +15,11 @@ export function Header() {
           <Button type="text" size="large" onClick={() => loginWithRedirect()}>
             Sign In
           </Button>
-          <Button size="large" type="primary">
+          <Button
+            size="large"
+            type="primary"
+            onClick={() => loginWithRedirect()}
+          >
             Join
           </Button>
         </div>

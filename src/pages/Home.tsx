@@ -10,6 +10,8 @@ export function Home() {
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/data");
+    } else {
+      navigate("/login");
     }
   }, [isAuthenticated, navigate]);
 

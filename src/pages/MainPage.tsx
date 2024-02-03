@@ -1,7 +1,7 @@
 import { Header } from "../components/Header";
 import { Container } from "../components/Container";
 import "./Data.css";
-import { Avatar, Button, Card, Space, Table, Typography, message } from "antd";
+import { Avatar, Button, Space, Table, Typography, message } from "antd";
 import { useEffect, useState } from "react";
 import { PillTag } from "../components/PillTag";
 import {
@@ -17,7 +17,6 @@ const { Column } = Table;
 
 export function MainPage() {
   const { fetching, tableData, handlePagination } = useMainPageDataLayer();
-  console.log("🚀 ~ MainPage ~ tableData:", tableData);
 
   return (
     <div>
@@ -187,9 +186,9 @@ function useMainPageDataLayer() {
   const [tableData, setTableData] = useState<{
     data: {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      content: Record<string, any>;
+      content: Record<string, any>; //TODO: better typed
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      creator: Record<string, any>;
+      creator: Record<string, any>; //TODO: better typed
     }[];
     next: number;
     page: number;
@@ -234,6 +233,10 @@ function useMainPageDataLayer() {
 
   return { fetching, tableData, handlePagination };
 }
+
+// function PostDetailsModal() {
+
+// }
 
 const MONTHS: Record<number, string> = {
   0: "Jan",
