@@ -1,0 +1,102 @@
+.login-card-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 95vh; /*  can be caulated width */
+}
+
+.login-card {
+  border-radius: 5px;
+  border: 1px solid #f2f2f2;
+  width: 100%;
+  height: 75%;
+  display: flex;
+  background-color: white;
+}
+
+.login-card--left {
+  flex: 1;
+  background-color: #5f27cd;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.login-card--left-content {
+  flex: 0.7;
+}
+
+.login-card--left-image {
+  flex: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.content-heading-1 {
+  color: white;
+  margin: 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: 36px;
+}
+
+.content-heading-2 {
+  color: #feca57;
+  margin: 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: 36px;
+  text-align: right;
+}
+
+.login-card--right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.login-card--right-header {
+  h3 {
+    font-size: 25px;
+    font-weight: 600;
+  }
+}
+
+.login-card--right-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 390px;
+}
+
+.login-card--right-buttons-brand-btn {
+  width: 100%;
+}
+
+.login-card--right-buttons-continue-btn {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  img {
+    width: auto;
+    height: 90%;
+  }
+}
+
+.login-card--right-footer {
+}
+
+.login-card--right-footer--member-text {
+  font-size: 15px;
+  color: rgba(118, 123, 138, 1);
+}

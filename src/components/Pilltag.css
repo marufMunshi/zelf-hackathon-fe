@@ -1,0 +1,8 @@
+.pill-tag {
+  background-color: rgba(241, 242, 243, 1);
+  height: 32px;
+  padding: 6px 16px 6px 16px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+}
