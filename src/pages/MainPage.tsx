@@ -1,7 +1,7 @@
 import { Header } from "../components/Header";
 import { Container } from "../components/Container";
 import "./Data.css";
-import { Avatar, Button, Space, Table, Typography, message } from "antd";
+import { Avatar, Button, Modal, Space, Table, Typography, message } from "antd";
 import { useEffect, useState } from "react";
 import { PillTag } from "../components/PillTag";
 import {
@@ -16,7 +16,14 @@ import {
 const { Column } = Table;
 
 export function MainPage() {
-  const { fetching, tableData, handlePagination } = useMainPageDataLayer();
+  const {
+    fetching,
+    tableData,
+    handlePagination,
+    closePostDetailsMdoal,
+    openPostDetailsModal,
+    postDetailsModalState,
+  } = useMainPageDataLayer();
 
   return (
     <div>
@@ -120,7 +127,11 @@ export function MainPage() {
               key="actions"
               // eslint-disable-next-line @typescript-eslint/no-unused-vars
               render={(_data) => {
-                return <Button>View Posts</Button>;
+                return (
+                  <Button onClick={() => openPostDetailsModal(_data)}>
+                    View Posts
+                  </Button>
+                );
               }}
             />
           </Table>
@@ -175,6 +186,11 @@ export function MainPage() {
               })}
             </div>
           </section>
+
+          <PostDetailsModal
+            isOpen={postDetailsModalState.isOpen}
+            handleCloseModal={closePostDetailsMdoal}
+          />
         </main>
       </Container>
     </div>
@@ -201,6 +217,28 @@ function useMainPageDataLayer() {
     page_size: 30,
     total_contents: 0,
   });
+  // should be done with useReducer
+
+  const [postDetailsModalState, setPostDetailsModalState] = useState({
+    isOpen: false,
+    data: {},
+  }); // should be done with useReducer
+
+  const closePostDetailsMdoal = () => {
+    setPostDetailsModalState({
+      isOpen: false,
+      data: {},
+    });
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const openPostDetailsModal = (postData: any) => {
+    // better typed
+    setPostDetailsModalState({
+      isOpen: true,
+      data: postData,
+    });
+  };
 
   const getTableData = async (page = 1) => {
     setFetching(true);
@@ -231,12 +269,36 @@ function useMainPageDataLayer() {
     getTableData();
   }, []);
 
-  return { fetching, tableData, handlePagination };
+  return {
+    fetching,
+    tableData,
+    handlePagination,
+    postDetailsModalState,
+    closePostDetailsMdoal,
+    openPostDetailsModal,
+  };
 }
 
-// function PostDetailsModal() {
+interface PostDetailsModalProps {
+  isOpen: boolean;
+  handleCloseModal: () => void;
+}
 
-// }
+function PostDetailsModal(props: PostDetailsModalProps) {
+  return (
+    <Modal
+      centered
+      open={props.isOpen}
+      onCancel={props.handleCloseModal}
+      width={1000}
+      footer={null}
+    >
+      <span>
+        Post data like creator name, post thumbnail, will be shown here
+      </span>
+    </Modal>
+  );
+}
 
 const MONTHS: Record<number, string> = {
   0: "Jan",
